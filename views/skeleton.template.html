@@ -5,7 +5,7 @@
   <div class="col-6" style="text-align: right">
     <div ng-if="user.isLoged">
       <a style="cursor: pointer" ng-click="loadMainContent('rooms')">{{user.mail}}</a>
-      <button class="btn btn-primary" ng-click="logOut()">logout</span>
+      <button class="btn btn-primary" ng-click="logOut()">Sair</span>
     </div>
     <div ng-if="!user.isLoged">
 
@@ -14,7 +14,7 @@
       <div class="btn-group">
         <button ng-click="openLoginToggle()" type="button" class="btn btn-primary dropdown-toggle"
           id="dropdown-toggle-login" aria-haspopup="true" aria-expanded="false">
-          log in
+         Entrar
         </button>
         <div class="dropdown-menu dropdown-menu-right">
           <form class="px-4 py-3">

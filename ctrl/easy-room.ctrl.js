@@ -75,6 +75,7 @@ app.controller('EasyRoomCtrl', function ($rootScope,Domain,$sce, $location, $sco
   usuarios = [];
   count_user_remot = 0;
   //Obtem posição mouse demais participantes da sala.
+  /*
   $SocketService.socket.on("movereceiver", function(moviment) {    	
     //msgobj = JSON.parse(msg);
     //console.log("RECEBENDO MOVIMENTAÇÂO", moviment); 
@@ -97,7 +98,7 @@ app.controller('EasyRoomCtrl', function ($rootScope,Domain,$sce, $location, $sco
 
     });
 
-  
+  */
   //array usuários logados na sala
  
   $SocketService.socket.on("sendchatmsg", function(mensagem){

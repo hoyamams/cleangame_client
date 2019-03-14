@@ -1,6 +1,6 @@
 var app = angular.module('cleangame', ['ngRoute']);
 
-local = true;
+local = false;
 
 if(local){
   app.constant('ApiPath', "http://localhost:8080");
