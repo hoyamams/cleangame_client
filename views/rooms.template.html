@@ -16,7 +16,7 @@
                             <span class="nav-link" ng-class="{'active' : nav.admin}">Administrador</span>
                         </li>
                         <li class="nav-item" ng-click="openTabMember()">
-                            <span class="nav-link" ng-class="{'active' : nav.member}">Participante</span>
+                            <span class="nav-link" ng-class="{'active' : nav.member}">Pesquisar salas</span>
                         </li>
                     </ul>
                 </div>
@@ -40,6 +40,7 @@
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Nome</th>
+                                    <th scope="col">Status</th>
                                     <th scope="col">Descrição</th>
                                     <th scope="col">Total participantes</th>
                                     <th scope="col">Ações</th>
@@ -49,11 +50,14 @@
                                 <tr ng-repeat="room in roomsAdministrator track by $index ">
                                     <th scope="row">{{$index + 1}}</th>
                                     <td>{{ room.name}}</td>
+                                    <td ng-if="room.open" style="color: deepskyblue">Aberta</td>
+                                    <td ng-if="!room.open" style="color: firebrick">Fechada</td>
                                     <td>{{ room.description}}</td>
                                     <td>
                                         0
                                     </td>
                                     <td>
+                                        <!--
                                         <span ng-click="deleteRoom(room)" style="cursor: pointer; color: brown">
                                             (excluir)
                                         </span>
@@ -61,9 +65,20 @@
                                         <span ng-click="editRoom(room)" style="cursor: pointer; color: rgba(16, 166, 212, 0.733)">
                                                 (edit)
                                         </span>
+                                        --> 
+                                        <span ng-click="close(room)" style="cursor: pointer; color: firebrick">
+                                                (fechar)
+                                        </span>
+                                        <span ng-click="open(room)" style="cursor: pointer; color: deepskyblue">
+                                                (abrir)
+                                        </span>
+                                        
+                                        <span ng-if="room.open" ng-click="accessRoom(room)" style="color: green; cursor: pointer">
+                                                (acessar)
+                                        </span>
 
-                                        <span ng-click="accessRoom(room)" style="cursor: pointer; color: green">
-                                            (entrar)
+                                        <span ng-if="!room.open" ng-click="" style="color: gray; cursor: pointer">
+                                                    (sala fechada)
                                         </span>
 
                                         
@@ -130,9 +145,13 @@
                                         <td>{{room.name}}</td>
                                         <td>{{room.description}}</td>
                                         <td>
-                                            <span ng-click="accessRoom(room)" style="color: green; cursor: pointer">
+                                            <span ng-if="room.open" ng-click="accessRoom(room)" style="color: green; cursor: pointer">
                                                 ( acessar )
                                             </span>
+
+                                            <span ng-if="!room.open" ng-click="" style="color: gray; cursor: pointer">
+                                                    ( sala fechada )
+                                                </span>
                                         </td>
                                     </tr>
 
@@ -151,7 +170,54 @@
 
             <div class="row">
                 <div class="col-12">
-                    SEÇÕES ABERTAS
+                    <div class="card text-center">
+                        <div class="card-header">
+        
+                            <ul class="nav nav-tabs card-header-tabs" style="cursor: pointer">
+                                <li class="nav-item">
+                                    <span class="nav-link active" >Minhas salas</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="card-body">
+                            <div ng-if="nav.admin">
+                                <div class="row" style="text-align: left">
+                                    <div class="col-8">Você está inscrito nas salas:</div>
+                                    
+                                </div>
+                                <table class="table">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Nome</th>
+                                            <th scope="col">Descrição</th>
+                                            <th scope="col">Total participantes</th>
+                                            <th scope="col">Ações</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="room in roomsMember track by $index ">
+                                            <th scope="row">{{$index + 1}}</th>
+                                            <td>{{ room.name}}</td>
+                                            <td>{{ room.description}}</td>
+                                            <td>
+                                                0
+                                            </td>
+                                            <td>
+                                                    <span ng-if="room.open" ng-click="accessRoom(room)" style="color: green; cursor: pointer">
+                                                            ( acessar )
+                                                        </span>
+            
+                                                        <span ng-if="!room.open" ng-click="" style="color: gray; cursor: pointer">
+                                                                ( sala fechada )
+                                                            </span>
+                                             </td>
+                                        </tr>
+        
+                                    </tbody>
+                                </table>
+                            </div>
+                      </div>
                 </div>
             </div>
         

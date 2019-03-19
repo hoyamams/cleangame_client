@@ -83,6 +83,28 @@ app.controller('MediumRoomCtrl', function ($rootScope,Domain, $location, $interv
     })
   }
 
+  $scope.getTip1 = function(){
+    $QuestionService.getTip1($scope.question.id).then(function(response){
+      $scope.tip = response.data.tip
+      //$SocketService.getTip(response.data.tip)
+    })
+  }
+
+  $scope.getTip2 = function(){
+    $QuestionService.getTip2($scope.question.id).then(function(response){
+      $scope.tip = response.data.tip
+      //$SocketService.getTip(response.data.tip)
+    })
+  }
+
+  $scope.getTip3 = function(){
+    $QuestionService.getTip3($scope.question.id).then(function(response){
+      $scope.tip = response.data.tip
+      //$SocketService.getTip(response.data.tip)
+    })
+  }
+
+
   $scope.skip = function(){
     $QuestionService.skip($scope.question.id).then(function(response){      
       loadQuestionSocket();
@@ -265,7 +287,7 @@ $scope.sendChatMensage = function(msg){
      
     },1000)  
 
-    multiplayer();
+    //multiplayer();
     loadQuestion();
     loadResume();
     loadQuestion();

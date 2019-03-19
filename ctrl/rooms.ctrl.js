@@ -67,6 +67,22 @@ app.controller('RoomsCtrl', function ($rootScope, $location, $scope, $RoomServic
   }
 
 
+  $scope.open = function(room){
+    $RoomService.open(room).then(function(response){
+      console.log(response);
+      getUserRoomsAdmin();
+      getUserRoomsMember()
+    })
+  }
+
+  $scope.close = function(room){
+    $RoomService.close(room).then(function(response){
+      getUserRoomsAdmin();
+      getUserRoomsMember()
+      console.log(response);
+    })
+  }
+
   $scope.createNewEasyRoom = function(){
     $rootScope.createRoom = true;
     $("#modalNewRoom").modal('hide');

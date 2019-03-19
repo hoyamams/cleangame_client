@@ -210,6 +210,28 @@ app.controller('EasyRoomCtrl', function ($rootScope,Domain,$sce, $location, $sco
     })
   }
 
+  $scope.getTip1 = function(){
+    $QuestionService.getTip1($scope.question.id).then(function(response){
+      $scope.tip = response.data.tip
+      //$SocketService.getTip(response.data.tip)
+    })
+  }
+
+  $scope.getTip2 = function(){
+    $QuestionService.getTip2($scope.question.id).then(function(response){
+      $scope.tip = response.data.tip
+      //$SocketService.getTip(response.data.tip)
+    })
+  }
+
+  $scope.getTip3 = function(){
+    $QuestionService.getTip3($scope.question.id).then(function(response){
+      $scope.tip = response.data.tip
+      //$SocketService.getTip(response.data.tip)
+    })
+  }
+
+
   $scope.skip = function(){
     $QuestionService.skip($scope.question.id).then(function(response){      
       loadQuestionSocket();
@@ -217,9 +239,9 @@ app.controller('EasyRoomCtrl', function ($rootScope,Domain,$sce, $location, $sco
   }
 
   $scope.restart = function(){
-    //$RoomService.restart().then(function(response){
+    $RoomService.restart().then(function(response){
     room = $RoomService.getActiveRoom();  
-    $RoomService.createTeam().then(function(response){
+   // $RoomService.createTeam().then(function(response){
       
         $RoomService.setActiveRoom(room);
         $TeamService.setActiveTeam(response.data);
@@ -229,9 +251,9 @@ app.controller('EasyRoomCtrl', function ($rootScope,Domain,$sce, $location, $sco
         }else{
           $rootScope.loadMainContent('rooms/medium/medium-room');
         }
-      })
+     // })
       //$rootScope.loadMainContent('rooms/easy/room')
-   // })
+    })
   }
 
 
@@ -308,15 +330,16 @@ app.controller('EasyRoomCtrl', function ($rootScope,Domain,$sce, $location, $sco
   }else{
   
     $EasyRoomService.setActiveRoom($RoomService.getActiveRoom());
-     
+    
+    
     setInterval(function(){
       $scope.$apply(function () {
         $scope.panel.time++;
         if($scope.panel.time == 40){
-          $scope.getTip();
+          //$scope.getTip();
         }
         if($scope.panel.time == 80){
-          $scope.getTip();
+         // $scope.getTip();
         }
   
   
@@ -324,7 +347,7 @@ app.controller('EasyRoomCtrl', function ($rootScope,Domain,$sce, $location, $sco
      
     },1000)  
 
-    multiplayer();
+   // multiplayer();
 
     loadQuestion();
     loadResume();

@@ -33,6 +33,49 @@ app.service('$QuestionService', ['$http', 'ApiPath','$TeamService', function ($h
         });
     }
 
+
+    this.getTip1 = function(question_id){
+        var config = {
+            headers: {
+                Authorization: localStorage.getItem("cleangameToken")
+            }
+        }
+        return $http.get(ApiPath + '/question/'+question_id+'/'+$TeamService.getActiveTeam().id+'/tip1', config).then(function (response) {
+            return response;                         
+        }).catch(function (err) {
+            console.log("Falha ao consultar dica...")
+            return err;
+        });
+    }
+
+    this.getTip2 = function(question_id){
+        var config = {
+            headers: {
+                Authorization: localStorage.getItem("cleangameToken")
+            }
+        }
+        return $http.get(ApiPath + '/question/'+question_id+'/'+$TeamService.getActiveTeam().id+'/tip2', config).then(function (response) {
+            return response;                         
+        }).catch(function (err) {
+            console.log("Falha ao consultar dica...")
+            return err;
+        });
+    }
+
+    this.getTip3 = function(question_id){
+        var config = {
+            headers: {
+                Authorization: localStorage.getItem("cleangameToken")
+            }
+        }
+        return $http.get(ApiPath + '/question/'+question_id+'/'+$TeamService.getActiveTeam().id+'/tip3', config).then(function (response) {
+            return response;                         
+        }).catch(function (err) {
+            console.log("Falha ao consultar dica...")
+            return err;
+        });
+    }
+
     this.skip = function(question_id){
         var config = {
             headers: {

@@ -149,7 +149,7 @@ app.service('$RoomService', ['$http', 'ApiPath','$TeamService', function ($http,
                 Authorization: localStorage.getItem("cleangameToken")
             }
         }
-
+       
         return $http.post(ApiPath + '/rooms/', room, config).then(function(response) {
                   
              console.log("room")                     
@@ -177,6 +177,41 @@ app.service('$RoomService', ['$http', 'ApiPath','$TeamService', function ($http,
             return err;
         });
     }
+
+    this.open = function(room){
+        var config = {
+            headers: {
+                Authorization: localStorage.getItem("cleangameToken")
+            }
+        }
+
+        return $http.post(ApiPath + '/rooms/open/'+room.id,null,config).then(function(response) {
+            console.log(response)                     
+                                  
+            return response
+        }).catch(function (err) {
+            console.log("ERRO: Falha ao abrir a sala...",err)
+            return err;
+        });
+    }
+
+    this.close = function(room){
+        var config = {
+            headers: {
+                Authorization: localStorage.getItem("cleangameToken")
+            }
+        }
+
+        return $http.post(ApiPath + '/rooms/close/'+room.id,null,config).then(function(response) {
+            console.log(response)                     
+                                  
+            return response
+        }).catch(function (err) {
+            console.log("ERRO: Falha ao fechar a sala...",err)
+            return err;
+        });
+    }
+
 
     /**Especie de seção */
     this.createTeam = function(){
