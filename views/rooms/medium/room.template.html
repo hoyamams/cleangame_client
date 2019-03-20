@@ -74,7 +74,7 @@
         
             <!-- COLUNA DIREITA //-->
             <div class="col-3" style="border:1px solid #cccccc;">
-        
+                <!--
                 <div class="row" style="padding: 10px 10px 10px 10px">
                     <div ng-click="sharedLink()" class="col-12" style="cursor: pointer">
                             <div class="card">
@@ -83,7 +83,7 @@
                                </div>
                             </div>
                     </div>
-                </div>
+                </div>-->
         
         
                 <div class="row" style="padding: 10px 10px 10px 10px">
@@ -95,7 +95,7 @@
                     </div>
                 </div>
         
-                <!--Barra de dificuldade //-->
+                <!--Barra de dificuldade
                 <div class="row">
                     <div class="col-12">
                         Difficulty of question:
@@ -112,13 +112,13 @@
                      <div class="col-4" style="text-align: center"><i ng-if="question.level == 2" class="material-icons">change_history </i></div>
                      <div class="col-4" style="text-align: center"><i ng-if="question.level == 3"class="material-icons">change_history </i></div>
                         
-                </div>
-        
+                </div> //-->
+               
                 <div class="row" style="padding-top: 10px">
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                Time
+                                Tempo
                             </div>
                             <div class="card-body">
                                 <div style="background-image: url('./lib/img/6.gif'); height: 100px; background-repeat: no-repeat; background-position: center; text-align: center; font-size:40px; padding-top: 15px">
@@ -126,7 +126,7 @@
                                 </div>
                             </div>
                             <div class="card-header">
-                                Score:{{resume.score}}
+                                Pontuação:{{resume.score}}
                             </div>
                         </div>
                     </div>
@@ -138,29 +138,37 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                Tools
+                                Ações
                             </div>
                             <div class="card-body">
                                 <div class="row" style="text-align: center">
-                                    <div class="col-3">
+                                    <div class="col-4">
                                         <a href="#" ng-click="getTip1()">
-                                            <img src="./lib/img/ico_dica.png" style="height: 50px; "> <br>Get Tip
+                                            <img src="./lib/img/ico_dica.png" style="height: 50px; "> <br>Dica<br>Definição
                                         </a>
                                     </div>
-                                    <div class="col-3">
+                                    <div class="col-4">
                                         <a href="#" ng-click="getTip2()">
-                                            <img src="./lib/img/ico_dica.png" style="height: 50px; "> <br>Get Tip
+                                            <img src="./lib/img/ico_dica.png" style="height: 50px; "> <br>Dica<br>Metricas
                                         </a>
                                     </div>
-                                    <div class="col-3">
-                                        <a href="#" ng-click="getTip3()">
-                                            <img src="./lib/img/ico_dica.png" style="height: 50px; "> <br>Get Tip
-                                        </a>
+                                    <div class="col-4">
+                                            <a href="#" ng-click="getTip3()">
+                                                <img src="./lib/img/ico_dica.png" style="height: 50px; "> <br>Dica<br>Proximidade
+                                            </a>
                                     </div>
-                                    <div class="col-3" ng-click="skip()">
-                                        <a href="#">
-                                            <img src="./lib/img/ico_skip.png" style="height: 50px; "> Skip
-                                        </a>
+                                </div>   
+                                <div class="row" style="text-align: center; padding: top 10px">
+                                    <div class="col-4">
+                                       
+                                    </div>
+                                    <div class="col-4" ng-click="skip()"><br><br>
+                                               <a href="#">
+                                                    <img src="./lib/img/ico_skip.png" style="height: 50px; "> Pular
+                                                </a>
+                                        </div>
+                                    <div class="col-4" >
+                                       
                                     </div>
                                    
                                 </div>

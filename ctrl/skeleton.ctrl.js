@@ -1,6 +1,6 @@
 app.controller('SkeletonCtrl', function ($rootScope,$routeParams, $location, $scope, $UserService,$RoomService, $TeamService) {
   console.log("Controlador SkeletonCtrl carregado!");
-  $scope.connectionState = "Por favor aguarde...";
+  $rootScope.connectionState = "Por favor aguarde...";
   $("#modalLoading").modal();
 
   $rootScope.user = {};
@@ -22,7 +22,7 @@ app.controller('SkeletonCtrl', function ($rootScope,$routeParams, $location, $sc
         $rootScope.loadMainContent('home')
         $("#modalLoading").modal('hide');
       }else{
-        $scope.connectionState = "Sem conexão com api, nova tentativa em execução";
+        rootScope.connectionState = "Sem conexão com api, nova tentativa em execução";
         getUser();
         //setTimeout(getUser(), 5000)
         //alert("Sem conexão com API")

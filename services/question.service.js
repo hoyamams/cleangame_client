@@ -1,19 +1,21 @@
-app.service('$QuestionService', ['$http', 'ApiPath','$TeamService', function ($http, ApiPath, $TeamService) {
+app.service('$QuestionService', ['$http', 'ApiPath','$TeamService',"$rootScope", function ($http, ApiPath, $TeamService,$rootScope) {
 
   
     this.markAlternative = function(alternative){
+        $rootScope.connectionState = "Por favor aguarde...";
+        $("#modalLoading").modal();
         var config = {
             headers: {
                 Authorization: localStorage.getItem("cleangameToken")
             }
         }
         return $http.post(ApiPath + '/rooms/markalternative',alternative, config).then(function(response) {
-                  
+            $("#modalLoading").modal('hide');      
              console.log("Question")                     
                                   
             return response
         }).catch(function (err) {
-            console.log("ERRO: Falha ao criar sala...")
+            console.log("ERRO: Falha ao marcar alternativa...")
             return err;
         });
     }
@@ -77,12 +79,15 @@ app.service('$QuestionService', ['$http', 'ApiPath','$TeamService', function ($h
     }
 
     this.skip = function(question_id){
+        $rootScope.connectionState = "Por favor aguarde...";
+        $("#modalLoading").modal();
         var config = {
             headers: {
                 Authorization: localStorage.getItem("cleangameToken")
             }
         }
         return $http.get(ApiPath + '/question/'+question_id+'/'+$TeamService.getActiveTeam().id+'/skip', config).then(function (response) {
+            $("#modalLoading").modal('hide');
             return response;                         
         }).catch(function (err) {
             console.log("Falha ao consultar dica...")
