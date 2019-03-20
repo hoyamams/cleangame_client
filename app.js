@@ -1,5 +1,21 @@
 var app = angular.module('cleangame', ['ngRoute']);
 
+/*  
+ Esta diretiva permite chamar uma função qualquer ao pressionar a tecla Enter.  
+  */  
+ app.directive('ngEnter', function () {  
+  return function (scope, element, attrs) {  
+    element.bind("keydown keypress", function (event) {  
+      if(event.which === 13) {  
+        scope.$apply(function (){  
+          scope.$eval(attrs.ngEnter);  
+        });  
+        event.preventDefault();  
+      }  
+    });  
+  };  
+}); 
+
 local = false;
 
 if(local){

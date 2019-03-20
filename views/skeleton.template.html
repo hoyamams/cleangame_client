@@ -8,9 +8,6 @@
       <button class="btn btn-primary" ng-click="logOut()">Sair</span>
     </div>
     <div ng-if="!user.isLoged">
-
-
-
       <div class="btn-group">
         <button ng-click="openLoginToggle()" type="button" class="btn btn-primary dropdown-toggle"
           id="dropdown-toggle-login" aria-haspopup="true" aria-expanded="false">
@@ -26,7 +23,7 @@
             <div class="form-group">
               <label for="FormEmailPasswd1">Password</label>
               <input ng-model="login.passwd" type="password" class="form-control" id="FormEmailPasswd1"
-                placeholder="Password">
+                placeholder="Password" ng-enter = "logIn(login)">
             </div>
             <div class="alert alert-danger" ng-if="msg.errorLogin" role="alert" style="font-size: 8pt">
               {{msg.errorLogin}}
@@ -38,13 +35,7 @@
           <span style="cursor: pointer" class="dropdown-item">Reset password</a>
         </div>
       </div>
-
-
-
-
     </div>
-
-
   </div>
 </div>
 
@@ -73,7 +64,6 @@
         </button>
       </div>
       <div class="modal-body">
-
         <!--Formulario de cadastro novos usuarios //-->
         <div class="form-group">
           <label for="formGroupName">Name</label>
@@ -81,7 +71,7 @@
         </div>
         <div class="form-group">
           <label for="formGroupExampleEmail">Mail</label>
-          <input ng-model="user.mail" type="email" class="form-control" id="formGroupExampleEmail"
+          <input ng-model="user.mail" type="text" class="form-control" id="formGroupExampleEmail"
             placeholder="email@example.com">
         </div>
         <div class="form-group">
@@ -90,9 +80,8 @@
         </div>
         <div class="form-group">
           <label for="formGroupExamplePasswd2">Confirm password</label>
-          <input ng-model="user.passwd2" type="password" class="form-control" id="formGroupExamplePasswd2">
+          <input ng-model="user.passwd2" type="password" class="form-control" id="formGroupExamplePasswd2" ng-enter="newUserInsert(user)">
         </div>
-
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -130,15 +119,12 @@
 <div id="modalLoading" class="modal" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-
       <div class="modal-body" style="text-align: center">
         <img src="./lib/img/loading.gif"><br><br>
         <h1>
           {{ connectionState }}
         </h1>
-
       </div>
-
     </div>
   </div>
 </div>
@@ -156,7 +142,7 @@
         <div class="form-group">
           <label for="FormEmailPasswd1">Password</label>
           <input ng-model="login.passwd" type="password" class="form-control" id="FormEmailPasswd1"
-            placeholder="Password">
+            placeholder="Password" ng-click="logIn(login)">
         </div>
         <div class="alert alert-danger" ng-if="msg.errorLogin" role="alert" style="font-size: 8pt">
           {{msg.errorLogin}}
