@@ -143,18 +143,29 @@
                             <div class="card-body">
                                 <div class="row" style="text-align: center">
                                     <div class="col-4">
-                                        <a href="#" ng-click="getTip1()">
+                                        <a ng-if="!tip1Solicitada" href="#" ng-click="getTip1()">
                                             <img src="./lib/img/ico_dica.png" style="height: 50px; "> <br>Dica<br>Definição
                                         </a>
+                                        <a ng-if="tip1Solicitada" href="#" ng-click="getTip1()">
+                                            <img  src="./lib/img/ico_dica_desabilitado.png" style="height: 50px; "> <br>Dica<br>Definição
+                                        </a>
+
+                                        
                                     </div>
                                     <div class="col-4">
-                                        <a href="#" ng-click="getTip2()">
+                                        <a ng-if="!tip2Solicitada" href="#" ng-click="getTip2()">
                                             <img src="./lib/img/ico_dica.png" style="height: 50px; "> <br>Dica<br>Metricas
+                                        </a>
+                                        <a ng-if="tip2Solicitada" href="#" ng-click="getTip2()">
+                                            <img  src="./lib/img/ico_dica_desabilitado.png" style="height: 50px; "> <br>Dica<br>Definição
                                         </a>
                                     </div>
                                     <div class="col-4">
-                                            <a href="#" ng-click="getTip3()">
+                                            <a ng-if="!tip3Solicitada" href="#" ng-click="getTip3()">
                                                 <img src="./lib/img/ico_dica.png" style="height: 50px; "> <br>Dica<br>Proximidade
+                                            </a>
+                                            <a ng-if="tip3Solicitada" href="#" ng-click="getTip3()">
+                                                <img  src="./lib/img/ico_dica_desabilitado.png" style="height: 50px; "> <br>Dica<br>Definição
                                             </a>
                                     </div>
                                 </div>   

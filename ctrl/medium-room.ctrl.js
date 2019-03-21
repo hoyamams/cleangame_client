@@ -16,6 +16,10 @@ app.controller('MediumRoomCtrl', function ($rootScope,Domain, $location, $interv
   $scope.step1 = true;
   $scope.step2 = false;
 
+  $scope.tip1Solicitada = false;
+  $scope.tip2Solicitada = false;
+  $scope.tip3Solicitada = false;
+
   $scope.question = {};
   $scope.questions = {};
 
@@ -36,7 +40,11 @@ app.controller('MediumRoomCtrl', function ($rootScope,Domain, $location, $interv
     })
   }
 
-  function loadQuestion(){  
+  function loadQuestion(){
+    $scope.tip1Solicitada = false;
+    $scope.tip2Solicitada = false;
+    $scope.tip3Solicitada = false;
+    
     loadResume();
     $scope.tip = null;
     $scope.panel.time = 0;  
@@ -86,6 +94,7 @@ app.controller('MediumRoomCtrl', function ($rootScope,Domain, $location, $interv
   $scope.getTip1 = function(){
     $QuestionService.getTip1($scope.question.id).then(function(response){
       $scope.tip = response.data.tip
+      $scope.tip1Solicitada = true;
       //$SocketService.getTip(response.data.tip)
     })
   }
@@ -93,6 +102,7 @@ app.controller('MediumRoomCtrl', function ($rootScope,Domain, $location, $interv
   $scope.getTip2 = function(){
     $QuestionService.getTip2($scope.question.id).then(function(response){
       $scope.tip = response.data.tip
+      $scope.tip2Solicitada = true;
       //$SocketService.getTip(response.data.tip)
     })
   }
@@ -100,6 +110,7 @@ app.controller('MediumRoomCtrl', function ($rootScope,Domain, $location, $interv
   $scope.getTip3 = function(){
     $QuestionService.getTip3($scope.question.id).then(function(response){
       $scope.tip = response.data.tip
+      $scope.tip3Solicitada = true;
       //$SocketService.getTip(response.data.tip)
     })
   }
@@ -107,7 +118,8 @@ app.controller('MediumRoomCtrl', function ($rootScope,Domain, $location, $interv
 
   $scope.skip = function(){
     $QuestionService.skip($scope.question.id).then(function(response){      
-      loadQuestionSocket();
+      //loadQuestionSocket();
+      loadQuestion();
     })
   }
 
