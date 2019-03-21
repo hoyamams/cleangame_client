@@ -53,7 +53,7 @@ app.controller('MediumRoomCtrl', function ($rootScope,Domain, $location, $interv
         //$scope.sourcecode = response.data.code
         //SyntaxHighlighter.All();
        }else{
-         //$rootScope.loadMainContent('rooms/easy/congratulations')
+         $rootScope.loadMainContent('rooms/medium/congratulations')
        }
        
        console.log("QUESTION",$scope.question)
@@ -246,7 +246,8 @@ app.controller('MediumRoomCtrl', function ($rootScope,Domain, $location, $interv
 
     $QuestionService.markAlternative(alternative).then(function(response){
       alternative = response.data;
-      loadQuestionSocket();            
+      //loadQuestionSocket(); 
+      loadQuestion();           
       
     })
  }
