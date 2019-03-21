@@ -190,6 +190,7 @@
                                         <tr>
                                             <th scope="col">#</th>
                                             <th scope="col">Nome</th>
+                                            <th scope="col">Tipo</th>
                                             <th scope="col">Descrição</th>
                                             <th scope="col">Total participantes</th>
                                             <th scope="col">Ações</th>
@@ -199,6 +200,8 @@
                                         <tr ng-repeat="room in roomsMember track by $index ">
                                             <th scope="row">{{$index + 1}}</th>
                                             <td>{{ room.name}}</td>
+                                            <td ng-if="room.type == 'EASY'" >Quiz</td>
+                                            <td ng-if="room.type != 'EASY'">Identificação</td>
                                             <td>{{ room.description}}</td>
                                             <td>
                                                 0
