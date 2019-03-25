@@ -341,10 +341,10 @@ $scope.sendChatMensage = function(msg){
       $scope.$apply(function () {
         $scope.panel.time++;
         if($scope.panel.time == 40){
-          $scope.getTip();
+         // $scope.getTip();
         }
         if($scope.panel.time == 80){
-          $scope.getTip();
+         // $scope.getTip();
         }
   
   
