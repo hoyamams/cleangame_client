@@ -1,9 +1,8 @@
 <div ng-controller="MediumRoomCtrl" class="row" style="padding: 30px 30px 30px 30px">
-        <div class="col-2">
+        <div class="col-1">
                 <div data-ng-include="'./views/profile.template.html'"></div>
-            </div>
-        
-            <div class="col-7">
+            </div>        
+            <div class="col-8">
                 <div class="row">
                     <div class="col-12">
                         <div class="card text-white bg-info mb-3" style="width: 100%">
@@ -13,13 +12,42 @@
                                 <div id="sourcecode"></div>
                             </div>
                         </div>
-                    </div>
-        
-                </div>
-        
+                    </div>        
+                </div>        
                 
                 <div class="row">
-                    <div class="col-12" ng-if="tip">
+                    <div class="col-5" style="font-size: 10pt">
+                            <ul class="list-group">
+                                    <li class="list-group-item">Dica 1 - Definição(-4 pontos)
+                                            <a ng-if="!tip1Solicitada" href="#" ng-click="getTip1()">
+                                                    <img src="./lib/img/ico_dica.png" style="height: 30px; float: right">
+                                                </a>
+                                                <a ng-if="tip1Solicitada" href="#" ng-click="getTip1()">
+                                                    <img  src="./lib/img/ico_dica_desabilitado.png" style="height: 30px;float: right ">
+                                                </a>
+
+                                    </li>
+                                    <li class="list-group-item">Métricas relacionadas ao Bad smell (-2 pontos)
+                                            <a ng-if="!tip2Solicitada" href="#" ng-click="getTip2()">
+                                                    <img src="./lib/img/ico_dica.png" style="height: 30px; float: right">
+                                                </a>
+                                                <a ng-if="tip2Solicitada" href="#" ng-click="getTip2()">
+                                                    <img  src="./lib/img/ico_dica_desabilitado.png" style="height: 30px; float: right">
+                                              </a>
+                                    </li>
+                                    <li class="list-group-item">Proximidade (-5 pontos)
+                                            <a ng-if="!tip3Solicitada" href="#" ng-click="getTip3()">
+                                                    <img src="./lib/img/ico_dica.png" style="height: 30px; float: right">
+                                                </a>
+                                                <a ng-if="tip3Solicitada" href="#" ng-click="getTip3()">
+                                                    <img  src="./lib/img/ico_dica_desabilitado.png" style="height: 30px; float: right">
+                                                </a>
+                                    </li>
+                                   
+                           </ul>                          
+
+                    </div>
+                    <div class="col-7" ng-if="tip">
                         <div class="alert alert-success" role="alert">
                            {{tip}}
                         </div>
@@ -118,70 +146,64 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                Tempo
+                                Pontuação Atual
                             </div>
                             <div class="card-body">
-                                <div style="background-image: url('./lib/img/6.gif'); height: 100px; background-repeat: no-repeat; background-position: center; text-align: center; font-size:40px; padding-top: 15px">
-                                    {{ panel.time }}
-                                </div>
+                                <div class="row" style="text-align: center">
+                                    <div class="col-4">
+                                        <h1>{{resume.score}} 30 pts</h1>
+                                        Tempo: {{ panel.time }}
+                                    </div>
+                                    <div class="col-8" style="font-size: 12pt; text-align: left"> 
+                                            <img src="./lib/img/ico_hit.png" style="height: 25px;padding-top: 4px">Total de acertos: {{resume.hits}} pts<br>
+                                            <img src="./lib/img/ico_err.png" style="height: 25px;padding-top: 4px">Total de erros: - {{resume.errors}} pts<br>
+                                            <img src="./lib/img/ico_mini_skip.png" style="height: 25px;padding-top: 4px">Questões Puladas: - {{resume.skips}} pts<br>
+                                            <img src="./lib/img/ico_dica.png" style="height: 25px; padding-top: 4px">Penalidades por uso de dicas: -x pts 
+                                    </div>
+                                </div>                                
                             </div>
                             <div class="card-header">
-                                Pontuação:{{resume.score}}
+                                
                             </div>
                         </div>
                     </div>
         
                 </div>
-        
+                
+                <div class="row">
+                    <div class="col-12">
+                         Progresso:
+                         <div class="progress">
+                            <div ng-style="progressStyle" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="" aria-valuenow="{{progress}}" aria-valuemax="100"></div>
+                         </div>
+                    </div>
+                </div>
         
                 <div class="row" style="padding-top: 10px">
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                Ações
+                                    <img src="./lib/img/ico_rank.png">Ranking(momento) 
                             </div>
                             <div class="card-body">
                                 <div class="row" style="text-align: center">
-                                    <div class="col-4">
-                                        <a ng-if="!tip1Solicitada" href="#" ng-click="getTip1()">
-                                            <img src="./lib/img/ico_dica.png" style="height: 50px; "> <br>Dica<br>Definição
-                                        </a>
-                                        <a ng-if="tip1Solicitada" href="#" ng-click="getTip1()">
-                                            <img  src="./lib/img/ico_dica_desabilitado.png" style="height: 50px; "> <br>Dica<br>Definição
-                                        </a>
-
-                                        
-                                    </div>
-                                    <div class="col-4">
-                                        <a ng-if="!tip2Solicitada" href="#" ng-click="getTip2()">
-                                            <img src="./lib/img/ico_dica.png" style="height: 50px; "> <br>Dica<br>Metricas
-                                        </a>
-                                        <a ng-if="tip2Solicitada" href="#" ng-click="getTip2()">
-                                            <img  src="./lib/img/ico_dica_desabilitado.png" style="height: 50px; "> <br>Dica<br>Definição
-                                        </a>
-                                    </div>
-                                    <div class="col-4">
-                                            <a ng-if="!tip3Solicitada" href="#" ng-click="getTip3()">
-                                                <img src="./lib/img/ico_dica.png" style="height: 50px; "> <br>Dica<br>Proximidade
-                                            </a>
-                                            <a ng-if="tip3Solicitada" href="#" ng-click="getTip3()">
-                                                <img  src="./lib/img/ico_dica_desabilitado.png" style="height: 50px; "> <br>Dica<br>Definição
-                                            </a>
-                                    </div>
-                                </div>   
-                                <div class="row" style="text-align: center; padding: top 10px">
-                                    <div class="col-4">
-                                       
-                                    </div>
-                                    <div class="col-4" ng-click="skip()"><br><br>
-                                               <a href="#">
-                                                    <img src="./lib/img/ico_skip.png" style="height: 50px; "> Pular
-                                                </a>
-                                        </div>
-                                    <div class="col-4" >
-                                       
-                                    </div>
-                                   
+                                       <div class="col-12" style="text-align: center">
+                                                         
+                                                <ul class="list-group">
+                                                    <li class="list-group-item list-group-item-success">1º Lucas Pts 100</li>
+                                                    <li class="list-group-item list-group-item-success">2º Lucas Pts 100</li>
+                                                    <li class="list-group-item list-group-item-success">3º Lucas Pts 100</li>
+                                                    <li class="list-group-item list-group-item-success">4º Lucas Pts 100</li>
+                                                    <li class="list-group-item list-group-item-success">5º Lucas Pts 100</li>
+                                                    <li class="list-group-item list-group-item-success">6º Lucas Pts 100</li>
+                                                    <li class="list-group-item list-group-item-success">7º Lucas Pts 100</li>
+                                                    <li class="list-group-item list-group-item-success">8º Lucas Pts 100</li>
+                                                    <li class="list-group-item list-group-item-success">9º Lucas Pts 100</li>
+                                                    <li class="list-group-item list-group-item-success">10º Lucas Pts 100</li>
+                                              
+                                               </ul>
+                                              </div>
+                                           
                                 </div>
         
         

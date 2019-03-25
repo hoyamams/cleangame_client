@@ -36,7 +36,12 @@ app.controller('MediumRoomCtrl', function ($rootScope,Domain, $location, $interv
 
   function loadResume(){
     $RoomService.getResume().then(function(response){
-      $scope.resume = response.data;     
+      $scope.resume = response.data;  
+      
+      $scope.progress = Math.round(((response.data.hits + response.data.errors + response.data.skips)*100 / response.data.totalQuestions))
+      
+      $scope.progressStyle = {'width':$scope.progress+'%'}
+      //alert($scope.progress)
     })
   }
 
@@ -258,6 +263,51 @@ app.controller('MediumRoomCtrl', function ($rootScope,Domain, $location, $interv
 
     $QuestionService.markAlternative(alternative).then(function(response){
       alternative = response.data;
+      
+      if(response.data.correct){
+        $("#maisPontos").show();
+        resto = 0;
+        efeito = setInterval(function(){
+          
+           $scope.$apply(function () {
+           if( (resto++ %2) == 0){
+            $("#maisPontos").hide();
+           }else{
+            $("#maisPontos").show();
+           }
+          })
+        },100)
+
+        setTimeout(function(){
+          $scope.$apply(function () {
+            $("#maisPontos").hide();
+            clearInterval(efeito)
+        });        
+        },3000);
+
+         
+      }else{
+        $("#menosPontos").show();
+        resto = 0;
+        efeito = setInterval(function(){
+          
+          $scope.$apply(function () {
+          if( (resto++ %2) == 0){
+            $("#menosPontos").hide();
+          }else{
+            $("#menosPontos").show();
+          }
+         })
+       },100)
+        setTimeout(function(){
+          $scope.$apply(function () {
+            $("#menosPontos").hide();
+            clearInterval(efeito)
+        });        
+        },3000);
+        
+      }
+
       //loadQuestionSocket(); 
       loadQuestion();           
       
