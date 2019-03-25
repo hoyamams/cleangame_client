@@ -49,8 +49,9 @@ app.controller('MediumRoomCtrl', function ($rootScope,Domain, $location, $interv
     $scope.tip1Solicitada = false;
     $scope.tip2Solicitada = false;
     $scope.tip3Solicitada = false;
-    
+    $("#modalLoading").modal()
     loadResume();
+    $("#modalLoading").modal()
     $scope.tip = null;
     $scope.panel.time = 0;  
     $MediumRoomService.getQuestion().then(function(response){
@@ -65,6 +66,7 @@ app.controller('MediumRoomCtrl', function ($rootScope,Domain, $location, $interv
        SyntaxHighlighter.highlight();
         //$scope.sourcecode = response.data.code
         //SyntaxHighlighter.All();
+        $("#modalLoading").modal('hide');
        }else{
          $rootScope.loadMainContent('rooms/medium/congratulations')
        }
