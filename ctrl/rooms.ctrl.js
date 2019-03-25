@@ -125,13 +125,13 @@ app.controller('RoomsCtrl', function ($rootScope, $location, $scope, $RoomServic
 
   $scope.accessRoom = function(room){
     $RoomService.setActiveRoom(room);
-     
+    $("#modalLoading").modal(); 
     //Criar uma seção ou team
     $RoomService.createTeam().then(function(response){
       
       $RoomService.setActiveRoom(room);
       $TeamService.setActiveTeam(response.data);
-
+      $("#modalLoading").modal('hide');
       if(room.type == "EASY"){
         $rootScope.loadMainContent('rooms/easy/room');
       }else{
