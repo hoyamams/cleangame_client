@@ -79,8 +79,9 @@ app.service('$TeamService', ['$http', 'ApiPath', function ($http, ApiPath) {
                 Authorization: localStorage.getItem("cleangameToken")
             }
         }
-
+        $("#modalLoading").modal();
         return $http.get(ApiPath + '/users/rooms/admin', config).then(function (response) {
+            $("#modalLoading").modal('hide');
             return response;                         
         }).catch(function (err) {
             console.log("ERRO: Falha ao obter salas administradas pelo usuario...")
@@ -97,8 +98,9 @@ app.service('$TeamService', ['$http', 'ApiPath', function ($http, ApiPath) {
                 Authorization: localStorage.getItem("cleangameToken")
             }
         }
-
+        $("#modalLoading").modal();
         return $http.get(ApiPath + '/users/rooms/member', config).then(function (response) {
+            $("#modalLoading").modal('hide');
             return response;                         
         }).catch(function (err) {
             console.log("ERRO: Falha ao obter salas do usuario...")
