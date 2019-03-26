@@ -16,7 +16,7 @@ var app = angular.module('cleangame', ['ngRoute']);
   };  
 }); 
 
-local = false;
+local = true;
 
 if(local){
   app.constant('ApiPath', "http://localhost:8080");

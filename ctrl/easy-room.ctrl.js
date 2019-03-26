@@ -146,8 +146,28 @@ app.controller('EasyRoomCtrl', function ($rootScope,Domain,$sce, $location, $sco
   
 
   function loadResume(){
+    $("#modalLoading").modal("hide");
     $RoomService.getResume().then(function(response){
-      $scope.resume = response.data;     
+      $scope.resume = response.data;
+      $scope.progress = Math.round(((response.data.hits + response.data.errors + response.data.skips)*100 / response.data.totalQuestions))
+      
+      $scope.progressStyle = {'width':$scope.progress+'%'} 
+    })
+    loadRanking();
+  }
+
+  function loadRanking(){
+    $RoomService.getRanking().then(function(response){
+      $scope.ranking = response.data.usersRankingDTO;
+
+      //Gambiarra para não atar server
+      $scope.ranking.forEach(ranking => {
+        if($rootScope.user.mail == ranking.email){
+           $scope.position = ranking.position;     
+           console.log("AQUI", $scope.resume.position)     
+        }
+      });
+      //alert($scope.progress)
     })
   }
 
@@ -234,7 +254,7 @@ app.controller('EasyRoomCtrl', function ($rootScope,Domain,$sce, $location, $sco
 
   $scope.skip = function(){
     $QuestionService.skip($scope.question.id).then(function(response){      
-      loadQuestionSocket();
+      loadQuestion();
     })
   }
 

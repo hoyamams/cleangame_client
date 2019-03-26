@@ -41,10 +41,9 @@ app.controller('MediumRoomCtrl', function ($rootScope,Domain, $location, $interv
 
   function loadResume(){
     $RoomService.getResume().then(function(response){
+      $("#modalLoading").modal("hide");
       $scope.resume = response.data;  
-      
       $scope.progress = Math.round(((response.data.hits + response.data.errors + response.data.skips)*100 / response.data.totalQuestions))
-      
       $scope.progressStyle = {'width':$scope.progress+'%'}
       //alert($scope.progress)
     })
@@ -92,7 +91,8 @@ app.controller('MediumRoomCtrl', function ($rootScope,Domain, $location, $interv
         //SyntaxHighlighter.All();
         $("#modalLoading").modal('hide');
        }else{
-         $rootScope.loadMainContent('rooms/medium/congratulations')
+         $rootScope.loadMainContent('rooms/medium/congratulations');
+         loadRanking();
        }
        
        console.log("QUESTION",$scope.question)
@@ -289,7 +289,8 @@ app.controller('MediumRoomCtrl', function ($rootScope,Domain, $location, $interv
 
 
 
-
+  $rootScope.score = {}
+  
   $scope.markAlternative = function(option){
     alternative = {};
     alternative.question = $scope.question.id;
@@ -297,9 +298,12 @@ app.controller('MediumRoomCtrl', function ($rootScope,Domain, $location, $interv
     alternative.md5answer = md5($scope.question.alternatives[option]);
 
     $QuestionService.markAlternative(alternative).then(function(response){
+      $("#modalLoading").modal("hide");
       alternative = response.data;
-      
+      $rootScope.score = response.data.score 
+     
       if(response.data.correct){
+        $("#modalMaisPontos").modal();
         $("#maisPontos").show();
         resto = 0;
         efeito = setInterval(function(){
@@ -316,12 +320,14 @@ app.controller('MediumRoomCtrl', function ($rootScope,Domain, $location, $interv
         setTimeout(function(){
           $scope.$apply(function () {
             $("#maisPontos").hide();
+            $("#modalMaisPontos").modal('hide');
             clearInterval(efeito)
         });        
         },3000);
-
+        
          
       }else{
+        $("#modalMenosPontos").modal();
         $("#menosPontos").show();
         resto = 0;
         efeito = setInterval(function(){
@@ -337,6 +343,7 @@ app.controller('MediumRoomCtrl', function ($rootScope,Domain, $location, $interv
         setTimeout(function(){
           $scope.$apply(function () {
             $("#menosPontos").hide();
+            $("#modalMenosPontos").modal('hide');
             clearInterval(efeito)
         });        
         },3000);

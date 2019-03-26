@@ -53,14 +53,33 @@
 </div>
 
 -->
+<!--Modais uso exibe pontuação //-->
+<div id="modalMaisPontos" class="modal" tabindex="-1" role="dialog" >
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body" style="text-align: center; height: 500pt;">
+        <spam id="maisPontos" style="display: none;font-size: 130pt; color:green">
+           {{score.points}} pts
+       </spam>
+      </div>
+    </div>
+  </div>
+</div>
 
-<spam id="maisPontos" style="position: absolute;z-index: 10000;left: 30%; top:10%; display: none;font-size: 150pt; color:green">
-   + 5 pts
-</spam>
 
-<spam id="menosPontos" style="position: absolute;z-index: 10000;left: 30%; top:10%; display: none; font-size: 150pt; color:red">
-    - 5 pts
-</spam>
+<div id="modalMenosPontos" class="modal" tabindex="-1" role="dialog" >
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body"style="text-align: center; height: 500pt;">
+        <spam id="menosPontos" style="display: none; font-size: 130pt; color:red">
+          {{score.points}} pts
+        </spam>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 
 <!--Modais uso diversos //-->
 <div id="modalNewUser" ng-controller="UserCtrl" class="modal" tabindex="-1" role="dialog">
