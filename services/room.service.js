@@ -26,6 +26,20 @@ app.service('$RoomService', ['$http', 'ApiPath','$TeamService', function ($http,
         });
     }
 
+    this.getRanking = function(){
+        var config = {
+            headers: {
+                Authorization: localStorage.getItem("cleangameToken")
+            }
+        }
+        return $http.get(ApiPath + '/rooms/'+$TeamService.getActiveTeam().id+'/ranking', config).then(function (response) {
+            return response;                         
+        }).catch(function (err) {
+            console.log("Falha ao consultar ranking...")
+            return err;
+        });
+    }
+
     this.getResumeBkp = function(){
         var config = {
             headers: {

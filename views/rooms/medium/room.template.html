@@ -27,7 +27,7 @@
                                                 </a>
 
                                     </li>
-                                    <li class="list-group-item">Métricas relacionadas ao Bad smell (-2 pontos)
+                                    <li class="list-group-item">Dica 2 - Métricas relacionadas ao Bad smell (-2 pontos)
                                             <a ng-if="!tip2Solicitada" href="#" ng-click="getTip2()">
                                                     <img src="./lib/img/ico_dica.png" style="height: 30px; float: right">
                                                 </a>
@@ -35,7 +35,7 @@
                                                     <img  src="./lib/img/ico_dica_desabilitado.png" style="height: 30px; float: right">
                                               </a>
                                     </li>
-                                    <li class="list-group-item">Proximidade (-5 pontos)
+                                    <li class="list-group-item">Dica 3 - Proximidade (-5 pontos)
                                             <a ng-if="!tip3Solicitada" href="#" ng-click="getTip3()">
                                                     <img src="./lib/img/ico_dica.png" style="height: 30px; float: right">
                                                 </a>
@@ -48,9 +48,16 @@
 
                     </div>
                     <div class="col-7" ng-if="tip">
+                        
                         <div class="alert alert-success" role="alert">
                            {{tip}}
+                           
                         </div>
+                    </div>
+                    <div class="col-7" ng-if="loadingtip">
+                        <div style="text-align: center">
+                            <img src="./lib/img/loading.gif">
+                          </div>
                     </div>
                 </div>
         
@@ -119,7 +126,7 @@
                         <img src="./lib/img/ico_hit.png">{{resume.hits}}
                         <img src="./lib/img/ico_err.png">{{resume.errors}}
                         <img src="./lib/img/ico_mini_skip.png">{{resume.skips}}
-                        <img src="./lib/img/ico_rank.png">#10
+                        <img src="./lib/img/ico_rank.png">#{{position}}
                     </div>
                 </div>
         
@@ -151,14 +158,14 @@
                             <div class="card-body">
                                 <div class="row" style="text-align: center">
                                     <div class="col-4">
-                                        <h1>{{resume.score}} 30 pts</h1>
+                                        <h1>{{resume.score}} pts</h1>
                                         Tempo: {{ panel.time }}
                                     </div>
                                     <div class="col-8" style="font-size: 12pt; text-align: left"> 
                                             <img src="./lib/img/ico_hit.png" style="height: 25px;padding-top: 4px">Total de acertos: {{resume.hits}} pts<br>
                                             <img src="./lib/img/ico_err.png" style="height: 25px;padding-top: 4px">Total de erros: - {{resume.errors}} pts<br>
-                                            <img src="./lib/img/ico_mini_skip.png" style="height: 25px;padding-top: 4px">Questões Puladas: - {{resume.skips}} pts<br>
-                                            <img src="./lib/img/ico_dica.png" style="height: 25px; padding-top: 4px">Penalidades por uso de dicas: -x pts 
+                                            <img src="./lib/img/ico_mini_skip.png" style="height: 25px;padding-top: 4px">Questões Puladas: {{resume.skips}}<br>
+                                            <img src="./lib/img/ico_dica.png" style="height: 25px; padding-top: 4px">Penalidades(dicas): {{resume.penalites}} pts 
                                     </div>
                                 </div>                                
                             </div>
@@ -170,12 +177,17 @@
         
                 </div>
                 
-                <div class="row">
-                    <div class="col-12">
+                <div class="row" style="padding-top: 10px">
+                    <div class="col-10">
                          Progresso:
                          <div class="progress">
                             <div ng-style="progressStyle" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="" aria-valuenow="{{progress}}" aria-valuemax="100"></div>
                          </div>
+                    </div>
+                    <div class="col-2" style="text-align: center" ng-click="skip()">
+                        <a href="#">
+                            <img src="./lib/img/ico_skip.png" style="height: 50px; ">Pular
+                        </a>
                     </div>
                 </div>
         
@@ -189,19 +201,12 @@
                                 <div class="row" style="text-align: center">
                                        <div class="col-12" style="text-align: center">
                                                          
-                                                <ul class="list-group">
-                                                    <li class="list-group-item list-group-item-success">1º Lucas Pts 100</li>
-                                                    <li class="list-group-item list-group-item-success">2º Lucas Pts 100</li>
-                                                    <li class="list-group-item list-group-item-success">3º Lucas Pts 100</li>
-                                                    <li class="list-group-item list-group-item-success">4º Lucas Pts 100</li>
-                                                    <li class="list-group-item list-group-item-success">5º Lucas Pts 100</li>
-                                                    <li class="list-group-item list-group-item-success">6º Lucas Pts 100</li>
-                                                    <li class="list-group-item list-group-item-success">7º Lucas Pts 100</li>
-                                                    <li class="list-group-item list-group-item-success">8º Lucas Pts 100</li>
-                                                    <li class="list-group-item list-group-item-success">9º Lucas Pts 100</li>
-                                                    <li class="list-group-item list-group-item-success">10º Lucas Pts 100</li>
-                                              
-                                               </ul>
+                                                <ul class="list-group" ng-repeat="r in ranking track by $index" style="text-align: left" >
+                                                    <li ng-if="user.mail != r.email"class="list-group-item list-group-item" style=""><span style="font-size: 12pt"  class="badge badge-primary badge-pill">{{r.position}}º</span>  {{r.name}} <span style="float: right">Pontos: {{r.score}}</span></li>
+                                                    <li ng-if="user.mail == r.email" class="list-group-item list-group-item-success active" style="font-weight: bold"><span style="font-size: 12pt" class="badge badge-warning badge-pill">{{r.position}}º</span> {{r.name}} <span style="float: right">Pontos: {{r.score}}</li>
+                                                   
+                                                    
+                                                </ul>
                                               </div>
                                            
                                 </div>

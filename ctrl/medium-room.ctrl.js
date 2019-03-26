@@ -9,6 +9,8 @@ app.controller('MediumRoomCtrl', function ($rootScope,Domain, $location, $interv
   label.btnCreateRoom = "Create!";
   label.git = "Git clone:"
 
+  $scope.loadingtip = false;
+
   $scope.leader = {};
 
   $scope.label = label;
@@ -23,10 +25,13 @@ app.controller('MediumRoomCtrl', function ($rootScope,Domain, $location, $interv
   $scope.question = {};
   $scope.questions = {};
 
+  $scope.resume = {};
+  $scope.position = 0;
 
   $scope.panel = {}
   $scope.panel.time = 0;
-
+  
+  $scope.rankingStyle = {"font-weight": "bold"}
   
   //Corrigir
   console.log("TEAM SERVICE",$TeamService);
@@ -43,7 +48,26 @@ app.controller('MediumRoomCtrl', function ($rootScope,Domain, $location, $interv
       $scope.progressStyle = {'width':$scope.progress+'%'}
       //alert($scope.progress)
     })
+    loadRanking();
   }
+
+
+  function loadRanking(){
+    $RoomService.getRanking().then(function(response){
+      $scope.ranking = response.data.usersRankingDTO;
+
+      //Gambiarra para não atar server
+      $scope.ranking.forEach(ranking => {
+        if($rootScope.user.mail == ranking.email){
+           $scope.position = ranking.position;     
+           console.log("AQUI", $scope.resume.position)     
+        }
+      });
+      //alert($scope.progress)
+    })
+  }
+    
+
 
   function loadQuestion(){
     $scope.tip1Solicitada = false;
@@ -99,25 +123,34 @@ app.controller('MediumRoomCtrl', function ($rootScope,Domain, $location, $interv
   }
 
   $scope.getTip1 = function(){
+    $scope.loadingtip = true;
+    $scope.tip = false;
     $QuestionService.getTip1($scope.question.id).then(function(response){
       $scope.tip = response.data.tip
       $scope.tip1Solicitada = true;
+      $scope.loadingtip = false;
       //$SocketService.getTip(response.data.tip)
     })
   }
 
   $scope.getTip2 = function(){
+    $scope.loadingtip = true;
+    $scope.tip = false;
     $QuestionService.getTip2($scope.question.id).then(function(response){
       $scope.tip = response.data.tip
       $scope.tip2Solicitada = true;
+      $scope.loadingtip = false;
       //$SocketService.getTip(response.data.tip)
     })
   }
 
   $scope.getTip3 = function(){
+    $scope.loadingtip = true;
+    $scope.tip = false;
     $QuestionService.getTip3($scope.question.id).then(function(response){
       $scope.tip = response.data.tip
       $scope.tip3Solicitada = true;
+      $scope.loadingtip = false;
       //$SocketService.getTip(response.data.tip)
     })
   }
