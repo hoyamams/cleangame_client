@@ -105,7 +105,7 @@
                 <img src="./lib/img/ico_hit.png">{{resume.hits}}
                 <img src="./lib/img/ico_err.png">{{resume.errors}}
                 <img src="./lib/img/ico_mini_skip.png">{{resume.skips}}
-                <img src="./lib/img/ico_rank.png">#10
+                <img src="./lib/img/ico_rank.png">#{{position}}
             </div>
         </div>
 
@@ -147,7 +147,7 @@
                                 Tempo: {{ panel.time }}
                             </div>
                             <div class="col-8" style="font-size: 12pt; text-align: left"> 
-                                <img src="./lib/img/ico_hit.png" style="height: 25px;padding-top: 4px">Total de acertos: {{resume.score.totalHits - resume.score.bonus }} pts<br>
+                                <img src="./lib/img/ico_hit.png" style="height: 25px;padding-top: 4px">Total de acertos: {{resume.hits * 8 }} pts<br>
                                 <img src="./lib/img/ico_err.png" style="height: 25px;padding-top: 4px">Total de erros: {{resume.score.totalErrors}} pts<br>
                                 <img src="./lib/img/clock.png" style="height: 25px;padding-top: 4px">Bônus tempo: {{resume.score.bonus}}<br>   
                                 <img src="./lib/img/ico_mini_skip.png" style="height: 25px;padding-top: 4px">Questões Puladas: {{resume.skips}}<br>                            
