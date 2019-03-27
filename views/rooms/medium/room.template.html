@@ -16,36 +16,41 @@
                 </div>        
                 
                 <div class="row">
-                    <div class="col-5" style="font-size: 10pt">
+                    <div class="col-4" style="font-size: 10pt">
                             <ul class="list-group">
-                                    <li class="list-group-item">Dica 1 - Definição(-4 pontos)
-                                            <a ng-if="!tip1Solicitada" href="#" ng-click="getTip1()">
-                                                    <img src="./lib/img/ico_dica.png" style="height: 30px; float: right">
-                                                </a>
-                                                <a ng-if="tip1Solicitada" href="#" ng-click="getTip1()">
-                                                    <img  src="./lib/img/ico_dica_desabilitado.png" style="height: 30px;float: right ">
-                                                </a>
-
-                                    </li>
-                                    <li class="list-group-item">Dica 2 - Métricas relacionadas ao Bad smell (-2 pontos)
-                                            <a ng-if="!tip2Solicitada" href="#" ng-click="getTip2()">
+                                    <li class="list-group-item">Dica 1 - Métricas relacionadas ao Bad smell (-5 pontos)
+                                            <!--<a ng-if="!tip2Solicitada" href="#" ng-click="getTip2()">
                                                     <img src="./lib/img/ico_dica.png" style="height: 30px; float: right">
                                                 </a>
                                                 <a ng-if="tip2Solicitada" href="#" ng-click="getTip2()">
                                                     <img  src="./lib/img/ico_dica_desabilitado.png" style="height: 30px; float: right">
-                                              </a>
+                                              </a>-->
                                     </li>
-                                    <li class="list-group-item">Dica 3 - Proximidade (-5 pontos)
-                                            <a ng-if="!tip3Solicitada" href="#" ng-click="getTip3()">
+                                    <li class="list-group-item">Dica 2 - Proximidade (-15 pontos)
+                                           <!-- <a ng-if="!tip3Solicitada" href="#" ng-click="getTip3()">
                                                     <img src="./lib/img/ico_dica.png" style="height: 30px; float: right">
                                                 </a>
                                                 <a ng-if="tip3Solicitada" href="#" ng-click="getTip3()">
                                                     <img  src="./lib/img/ico_dica_desabilitado.png" style="height: 30px; float: right">
-                                                </a>
+                                                </a>-->
                                     </li>
+                                    <li class="list-group-item">Dica 3 - Definição(-30 pontos)
+                                        <!--<a ng-if="!tip1Solicitada" href="#" ng-click="getTip1()">
+                                                <img src="./lib/img/ico_dica.png" style="height: 30px; float: right">
+                                            </a>
+                                            <a ng-if="tip1Solicitada" href="#" ng-click="getTip1()">
+                                                <img  src="./lib/img/ico_dica_desabilitado.png" style="height: 30px;float: right ">
+                                            </a>-->
+
+                                </li>
                                    
                            </ul>                          
 
+                    </div>
+                    <div class="col-1">
+                        <a href="#" ng-click="getTips()">
+                            <img src="./lib/img/ico_dica.png" style="height: 30px; float: right">Solicitar Dicas
+                        </a>
                     </div>
                     <div class="col-7" ng-if="tip">
                         
@@ -162,9 +167,10 @@
                                         Tempo: {{ panel.time }}
                                     </div>
                                     <div class="col-8" style="font-size: 12pt; text-align: left"> 
-                                            <img src="./lib/img/ico_hit.png" style="height: 25px;padding-top: 4px">Total de acertos: {{resume.hits * 12}} pts<br>
+                                            <img src="./lib/img/ico_hit.png" style="height: 25px;padding-top: 4px">Total de acertos: {{resume.hits * 100}} pts<br>
                                             <img src="./lib/img/ico_err.png" style="height: 25px;padding-top: 4px">Total de erros: {{resume.score.totalErrors}} pts<br>
                                             <img src="./lib/img/clock.png" style="height: 25px;padding-top: 4px">Bônus tempo: {{resume.score.bonus}}<br>
+                                            <img src="./lib/img/consecutivo.png" style="height: 25px;padding-top: 4px">Bônus acertos: {{resume.score.bonusConsecutive}}<br>
                                             <img src="./lib/img/ico_dica.png" style="height: 25px; padding-top: 4px">Penalidades(dicas): {{resume.score.panalites}} pts <br>
                                             <img src="./lib/img/ico_mini_skip.png" style="height: 25px;padding-top: 4px">Questões Puladas: {{resume.skips}}<br> 
                                            

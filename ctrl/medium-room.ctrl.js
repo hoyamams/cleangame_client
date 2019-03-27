@@ -123,6 +123,23 @@ app.controller('MediumRoomCtrl', function ($rootScope,Domain, $location, $interv
     })
   }
 
+
+  $scope.getTips = function(){
+    
+    if(!$scope.tip2Solicitada){
+      $scope.getTip2();
+    }else if(!$scope.tip3Solicitada){
+      $scope.getTip3();
+    }else{
+      $scope.getTip1();
+    }
+
+
+  
+
+  }
+
+  //DEFINIÇÃO
   $scope.getTip1 = function(){
     $scope.loadingtip = true;
     $scope.tip = false;
@@ -134,6 +151,8 @@ app.controller('MediumRoomCtrl', function ($rootScope,Domain, $location, $interv
     })
   }
 
+  
+   //METRICAS
   $scope.getTip2 = function(){
     $scope.loadingtip = true;
     $scope.tip = false;
@@ -145,6 +164,7 @@ app.controller('MediumRoomCtrl', function ($rootScope,Domain, $location, $interv
     })
   }
 
+ //PROXIMIDADE
   $scope.getTip3 = function(){
     $scope.loadingtip = true;
     $scope.tip = false;
