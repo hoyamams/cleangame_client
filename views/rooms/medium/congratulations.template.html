@@ -19,7 +19,7 @@
           </div>
 
         <div class="row" style="padding-top: 10px">
-                <div class="col-3"> <img src="./lib/img/ico_hit.png" style="height: 25px;padding-top: 4px">Total de acertos: {{resume.score.totalHits}} pts</div>
+                <div class="col-3"> <img src="./lib/img/ico_hit.png" style="height: 25px;padding-top: 4px">Total de acertos: {{resume.score.totalHits - resume.score.bonus}} pts</div>
                 <div class="col-3"><img src="./lib/img/ico_err.png" style="height: 25px;padding-top: 4px">Total de erros: - {{resume.score.totalErrors}} pts</div>
                 <div class="col-3"><img src="./lib/img/clock.png" style="height: 25px;padding-top: 4px">Bônus tempo: {{resume.score.bonus}}</div>
                 <div class="col-3"><img src="./lib/img/ico_mini_skip.png" style="height: 25px;padding-top: 4px">Questões Puladas: {{resume.skips}}</div>
