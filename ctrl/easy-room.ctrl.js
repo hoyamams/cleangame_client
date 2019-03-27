@@ -28,6 +28,8 @@ app.controller('EasyRoomCtrl', function ($rootScope,Domain,$sce, $location, $sco
   $scope.sendMsg = "";
   $scope.consoleChat = '...';
 
+  $scope.resume = {};
+  $scope.resume.hits = 0;
 
   console.log("DADOS DA SALA", $RoomService.getActiveRoom());
 

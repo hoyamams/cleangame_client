@@ -26,6 +26,7 @@ app.controller('MediumRoomCtrl', function ($rootScope,Domain, $location, $interv
   $scope.questions = {};
 
   $scope.resume = {};
+  $scope.resume.hits = 0;
   $scope.position = 0;
 
   $scope.panel = {}
