@@ -83,6 +83,15 @@ app.controller('RoomsCtrl', function ($rootScope, $location, $scope, $RoomServic
     })
   }
 
+  $scope.report = function(room){
+    $RoomService.setActiveRoom(room);
+    $rootScope.loadMainContent('/rooms/report/report');
+  }
+
+  $scope.reset = function(room){
+
+  }
+
   $scope.createNewEasyRoom = function(){
     $rootScope.createRoom = true;
     $("#modalNewRoom").modal('hide');
@@ -128,7 +137,7 @@ app.controller('RoomsCtrl', function ($rootScope, $location, $scope, $RoomServic
     $("#modalLoading").modal(); 
     //Criar uma seção ou team
     $RoomService.createTeam().then(function(response){
-      
+      console.log("CREATE TEAM")
       $RoomService.setActiveRoom(room);
       $TeamService.setActiveTeam(response.data);
       $("#modalLoading").modal('hide');

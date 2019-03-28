@@ -66,8 +66,14 @@
                                         <span ng-click="editRoom(room)" style="cursor: pointer; color: rgba(16, 166, 212, 0.733)">
                                                 (edit)
                                         </span>
-                                        --> 
-                                        <span ng-click="close(room)" style="cursor: pointer; color: firebrick">
+                                        -->
+                                        <span ng-click="report(room)" style="cursor: pointer; color: seagreen">
+                                            (relatórios)
+                                        </span>
+                                        <span ng-click="reset(room)" style="cursor: pointer; color: firebrick">
+                                            (resetar)
+                                        </span>
+                                        <span ng-click="close(room)" style="cursor: pointer; color: orangered">
                                                 (fechar)
                                         </span>
                                         <span ng-click="open(room)" style="cursor: pointer; color: deepskyblue">
@@ -152,7 +158,7 @@
 
                                             <span ng-if="!room.open" ng-click="" style="color: gray; cursor: pointer">
                                                     ( sala fechada )
-                                                </span>
+                                            </span>
                                         </td>
                                     </tr>
 

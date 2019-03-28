@@ -92,8 +92,15 @@ app.controller('MediumRoomCtrl', function ($rootScope,Domain, $location, $interv
         //SyntaxHighlighter.All();
         $("#modalLoading").modal('hide');
        }else{
-         $rootScope.loadMainContent('rooms/medium/congratulations');
-         loadRanking();
+        $("#modalMaisPontos").modal('hide');
+        $("#modalMenosPontos").modal('hide');
+        setInterval(function(){
+          $scope.$apply(function () {
+            loadRanking();
+         })
+      },5000) 
+        $rootScope.loadMainContent('rooms/medium/congratulations');
+       
        }
        
        console.log("QUESTION",$scope.question)

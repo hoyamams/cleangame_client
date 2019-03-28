@@ -1,6 +1,6 @@
 app.service('$RoomService', ['$http', 'ApiPath','$TeamService', function ($http, ApiPath,$TeamService) {
 
-  
+     
     //Mantem dados do usuario autenticado
     this.room = {}
     
@@ -25,6 +25,22 @@ app.service('$RoomService', ['$http', 'ApiPath','$TeamService', function ($http,
             return err;
         });
     }
+
+    this.getReport = function(){
+        var config = {
+            headers: {
+                Authorization: localStorage.getItem("cleangameToken")
+            }
+        }
+        return $http.get(ApiPath + '/rooms/'+this.getActiveRoom().id+'/report', config).then(function (response) {
+            return response;                         
+        }).catch(function (err) {
+            console.log("Falha ao consultar report...")
+            return err;
+        });
+    }
+
+    
 
     this.getRanking = function(){
         var config = {

@@ -174,15 +174,30 @@ app.controller('EasyRoomCtrl', function ($rootScope,Domain,$sce, $location, $sco
   }
 
   function loadQuestion(){  
-    loadResume();
     $scope.tip = null;
+    $("#modalLoading").modal()
+    loadResume();
+    $("#modalLoading").modal()
     $scope.panel.time = 0;  
     $EasyRoomService.getQuestion().then(function(response){
        if(response.data.id != null){
-         $scope.question = response.data;         
+         $scope.question = response.data;
+         $("#modalLoading").modal('hide');         
        }else{
-         $rootScope.loadMainContent('rooms/easy/congratulations')
-       }       
+        $("#modalLoading").modal('hide');
+        $("#modalMaisPontos").modal('hide');
+        $("#modalMenosPontos").modal('hide');
+        setInterval(function(){
+          $scope.$apply(function () {
+            loadRanking();
+         })
+      },5000) 
+        $rootScope.loadMainContent('rooms/easy/congratulations')
+        
+          
+         
+
+     }       
        console.log($scope.question)
     })
   }
@@ -286,8 +301,60 @@ app.controller('EasyRoomCtrl', function ($rootScope,Domain,$sce, $location, $sco
      alternative.md5answer = md5($scope.question.alternatives[option]);
 
      $QuestionService.markAlternative(alternative).then(function(response){
-       alternative = response.data;
-       loadQuestionSocket()             
+      $("#modalLoading").modal("hide");
+      alternative = response.data;
+      $rootScope.score = response.data.score 
+      
+      if(response.data.correct){
+        $("#modalMaisPontos").modal();
+        $("#maisPontos").show();
+        resto = 0;
+        efeito = setInterval(function(){
+          
+           $scope.$apply(function () {
+           if( (resto++ %2) == 0){
+            $("#maisPontos").hide();
+           }else{
+            $("#maisPontos").show();
+           }
+          })
+        },100)
+
+        setTimeout(function(){
+          $scope.$apply(function () {
+            $("#maisPontos").hide();
+            $("#modalMaisPontos").modal('hide');
+            clearInterval(efeito)
+        });        
+        },3000);
+        
+         
+      }else{
+        $("#modalMenosPontos").modal();
+        $("#menosPontos").show();
+        resto = 0;
+        efeito = setInterval(function(){
+          
+          $scope.$apply(function () {
+          if( (resto++ %2) == 0){
+            $("#menosPontos").hide();
+          }else{
+            $("#menosPontos").show();
+          }
+         })
+       },100)
+        setTimeout(function(){
+          $scope.$apply(function () {
+            $("#menosPontos").hide();
+            $("#modalMenosPontos").modal('hide');
+            clearInterval(efeito)
+        });        
+        },3000);
+        
+      }
+
+      //loadQuestionSocket(); 
+      loadQuestion(); 
        
      })
   }
