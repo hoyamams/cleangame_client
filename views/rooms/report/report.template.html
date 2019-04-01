@@ -3,7 +3,7 @@
     
     <div class="card text-center"  >
         <div class="card-header">
-            <h1>{{r.user.mail}}</h1>
+            <h1> Posição:{{$index + 1}} {{r.user.mail}}</h1>
         </div>
         <div class="card-body" style="text-align: left">
           Respostas:
@@ -21,8 +21,8 @@
               </tr>
             </thead>
             <tbody>
-              <tr ng-repeat="answer in r.answers track by $index2">
-                  <td>{{ $index2 }}</td>
+              <tr ng-repeat="answer in r.answers track by $index">
+                  <td></td>
                   <td>{{answer.question.id}}</td>
                   <td>{{answer.correct}}</td>
                   <td>{{answer.time}}</td>
@@ -48,6 +48,8 @@
         </div>
       </div>
      
+       <br><br><br>
+
 
    </div>
 
