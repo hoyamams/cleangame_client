@@ -33,9 +33,9 @@ app.controller('ReportCtrl', function ($rootScope,Domain, $location, $interval, 
   $scope.panel.time = 0;
   
   $scope.rankingStyle = {"font-weight": "bold"}
-  
+  $scope.reports = {}
   $RoomService.getReport().then(function(response){
-    
+    $scope.reports = response.data;
   })
 
  
