@@ -305,6 +305,16 @@ app.controller('EasyRoomCtrl', function ($rootScope,Domain,$sce, $location, $sco
       alternative = response.data;
       $rootScope.score = response.data.score 
       
+      if(md5($scope.question.alternatives[0]) == response.data.md5correct){
+        $rootScope.answerCorrect = "A "+$scope.question.alternatives[0];
+      }else if(md5($scope.question.alternatives[1]) == response.data.md5correct){
+        $rootScope.answerCorrect = "B "+$scope.question.alternatives[1];          
+      }else if(md5($scope.question.alternatives[2]) == response.data.md5correct){
+        $rootScope.answerCorrect = "C "+$scope.question.alternatives[2];          
+      }else{
+        $rootScope.answerCorrect = "D "+$scope.question.alternatives[3];          
+      } 
+
       if(response.data.correct){
         $("#modalMaisPontos").modal();
         $("#maisPontos").show();
@@ -326,7 +336,7 @@ app.controller('EasyRoomCtrl', function ($rootScope,Domain,$sce, $location, $sco
             $("#modalMaisPontos").modal('hide');
             clearInterval(efeito)
         });        
-        },3000);
+        },5000);
         
          
       }else{
