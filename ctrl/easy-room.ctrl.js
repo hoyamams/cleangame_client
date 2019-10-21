@@ -336,7 +336,7 @@ app.controller('EasyRoomCtrl', function ($rootScope,Domain,$sce, $location, $sco
             $("#modalMaisPontos").modal('hide');
             clearInterval(efeito)
         });        
-        },5000);
+        },3000);
         
          
       }else{

@@ -362,7 +362,7 @@ app.controller('MediumRoomCtrl', function ($rootScope,Domain, $location, $interv
             $("#modalMaisPontos").modal('hide');
             clearInterval(efeito)
         });        
-        },5000);
+        },3000);
         
          
       }else{
